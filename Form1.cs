@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace laba_ciaod_8
 {
@@ -19,15 +20,18 @@ namespace laba_ciaod_8
         }
         public int HashingByMiddleOfTheSquares(int Key)
         {
-            long hesh = (long)Key*Key;
-            if (hesh < 1000) return (int)hesh;
-            int length = (int)(Math.Log10(Key) + 1);
-            int keyLength = (int)(Math.Log10(MaxHash-1) + 1);
-            int RightCut =  (int)(Math.Pow(10, (length - keyLength) / 2));
-            int LeftCut = (int)(Math.Pow(10, keyLength));
-            long tmp = Key / RightCut;
-            tmp = tmp % LeftCut;
-            return (int)tmp;
+            int keyLength = (int)(Math.Log10(MaxHash - 1) + 1);
+            long kk = (long)Key * Key;
+            if (kk < MaxHash)
+            {
+                return (int)kk;
+            }
+            int l = Convert.ToInt32(Math.Log10(kk) + 1);
+
+            l = (l - keyLength) / 2;
+
+            kk = kk / Convert.ToInt32(Math.Pow(10, l));
+            return (int)(kk % Convert.ToInt32(Math.Pow(10, keyLength)));
         }
         public int HashingByCollapses(int Key)
         {
@@ -43,8 +47,8 @@ namespace laba_ciaod_8
         }
         public int HashingByMultiplication(int Key)
         {
-            
-            return (int)(MaxHash*(Key * A % 1));
+            double A = (Math.Sqrt(5) - 1) / 2;
+            return (int)(MaxHash * ((Key * A) % 1));
         }
         public int[] CreateRandomArray(int size, int maxElement)
         {
@@ -70,7 +74,7 @@ namespace laba_ciaod_8
                         break;
                     case 2:
                         index=HashingByMiddleOfTheSquares(keys[i]);
-                        break ;
+                        break;
                     case 3:
                         index = HashingByCollapses(keys[i]);
                         break;
@@ -88,6 +92,7 @@ namespace laba_ciaod_8
                 {
                     tmp[index]=new List<int>(){};
                 }
+                tmp[index].Add(keys[i]);
             }
             return collision;
         }
