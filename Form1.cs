@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -7,7 +8,7 @@ namespace laba_ciaod_8
     {
 
         const int KeyConst = 45678;
-        int MaxHash = 1000;
+        int MaxHash = 10000;
         double A = (Math.Sqrt(5) - 1) / 2;
         public Form1()
         {
@@ -135,6 +136,77 @@ namespace laba_ciaod_8
             textBox2.Text = Convert.ToString(points2);
             textBox3.Text = Convert.ToString(points3);
             textBox4.Text = Convert.ToString(points4);
+        }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        //public int[] getHeshArray()
+        //{
+        //    int[] array = CreateRandomArray(10000, 10000);
+        //    int[] hashArray = new int[10000];
+        //    Array.Clear(hashArray);
+        //    int sum = 0;
+        //    int numOfComparison = 0;
+        //    int numsOfFound = 0;
+        //    for (int i = 0; i < array.Length; i++)
+        //    {
+        //        int j = HashingByMultiplication(array[i]);
+        //        while (hashArray[j] != 0)
+        //        {
+        //            j++;
+        //            j = j % (array.Length);
+        //        }
+        //        hashArray[j] = array[i];
+        //    }
+        //    return
+        //}
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int[] array = CreateRandomArray(10000, 10000);
+            int[] hashArray=new int[10000];
+            Array.Clear(hashArray);
+            int sum = 0;
+            int numOfComparison = 0;
+            int numsOfFound = 0;
+            for(int i=0; i<array.Length; i++)
+            {
+                int j = HashingByMultiplication(array[i]);
+                while (hashArray[j] != 0)
+                {
+                    j++;
+                    j = j % (array.Length);
+                }
+                hashArray[j] = array[i];
+            }
+            int[] keys = CreateRandomArray(10000, 20000);
+            var time = new Stopwatch();
+            time.Start();
+            for(int i=0; i<keys.Length; i++)
+            {
+                numOfComparison = 0;
+                int tmp = 1;
+                if (HashingByMultiplication(keys[i]) == 0)
+                {
+                    tmp = 0;
+                }
+                for(int j = HashingByMultiplication(keys[i]) + 1 - tmp; j != (HashingByMultiplication(keys[i])-tmp); j++)
+                {
+                    j=j%(keys.Length);
+                    numOfComparison++;
+                    if (keys[i] == hashArray[j])
+                    {
+                        numsOfFound++;
+                        break;
+                    }
+                }
+                sum += numOfComparison;
+            }
+            time.Stop();
+            textBox5.Text = Convert.ToString(time.ElapsedMilliseconds);
+            textBox6.Text = Convert.ToString(sum / keys.Length);
+            textBox7.Text = Convert.ToString(numsOfFound);
         }
     }
 }

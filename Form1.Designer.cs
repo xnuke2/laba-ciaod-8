@@ -243,6 +243,7 @@
             this.button2.TabIndex = 17;
             this.button2.Text = "Сравнить";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // groupBox2
             // 
@@ -257,7 +258,7 @@
             this.groupBox2.Size = new System.Drawing.Size(400, 104);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Метод открытой адресации";
+            this.groupBox2.Text = "Метод цепочек";
             // 
             // textBox8
             // 
@@ -400,6 +401,7 @@
             this.buttonExit.TabIndex = 18;
             this.buttonExit.Text = "Выход";
             this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
             // Form1
             // 
