@@ -183,23 +183,25 @@ namespace laba_ciaod_8
             int[] keys = CreateRandomArray(10000, 20000);
             var time = new Stopwatch();
             time.Start();
-            for(int i=0; i<keys.Length; i++)
+            int num = keys.Length;
+            for (int i=0; i<keys.Length; i++)
             {
                 numOfComparison = 0;
-                int tmp = 1;
+                int tmp = HashingByMultiplication(keys[i]) - 1;
                 if (HashingByMultiplication(keys[i]) == 0)
                 {
-                    tmp = 0;
+                    tmp = keys.Length-1;
                 }
-                for(int j = HashingByMultiplication(keys[i]) + 1 - tmp; j != (HashingByMultiplication(keys[i])-tmp); j++)
+                int j = HashingByMultiplication(keys[i]);
+                while(j != tmp)
                 {
-                    j=j%(keys.Length);
                     numOfComparison++;
                     if (keys[i] == hashArray[j])
                     {
                         numsOfFound++;
                         break;
                     }
+                    j= (j+1)%keys.Length;
                 }
                 sum += numOfComparison;
             }
