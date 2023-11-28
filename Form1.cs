@@ -142,26 +142,7 @@ namespace laba_ciaod_8
         {
             Close();
         }
-        //public int[] getHeshArray()
-        //{
-        //    int[] array = CreateRandomArray(10000, 10000);
-        //    int[] hashArray = new int[10000];
-        //    Array.Clear(hashArray);
-        //    int sum = 0;
-        //    int numOfComparison = 0;
-        //    int numsOfFound = 0;
-        //    for (int i = 0; i < array.Length; i++)
-        //    {
-        //        int j = HashingByMultiplication(array[i]);
-        //        while (hashArray[j] != 0)
-        //        {
-        //            j++;
-        //            j = j % (array.Length);
-        //        }
-        //        hashArray[j] = array[i];
-        //    }
-        //    return
-        //}
+
         private void button2_Click(object sender, EventArgs e)
         {
             int[] array = CreateRandomArray(10000, 10000);
@@ -209,6 +190,35 @@ namespace laba_ciaod_8
             textBox5.Text = Convert.ToString(time.ElapsedMilliseconds);
             textBox6.Text = Convert.ToString(sum / keys.Length);
             textBox7.Text = Convert.ToString(numsOfFound);
+            //List<int>[] hashArray1= new List<int>[array.Length];
+            //int numOfFound1 = 0;
+            //int sum1 = 0;
+
+            //for (int i = 0; i < array.Length; i++)
+            //{
+            //    if (hashArray1[HashingByMultiplication(array[i])] ==null)
+            //    {
+            //        hashArray1[HashingByMultiplication(array[i])] = new List<int>();
+            //    }
+            //    hashArray1[HashingByMultiplication(array[i])].Add(array[i]);
+            //}
+            //time = new Stopwatch();
+            //time.Start();
+            //for (int i = 0;i < keys.Length; i++) {
+            //    int numOfComparison1 = 0;
+            //    numOfComparison1++;
+            //    if (hashArray1[HashingByMultiplication(keys[i])] != null)
+            //    {
+            //        if (hashArray1[HashingByMultiplication(keys[i])].Contains(keys[i])) numOfFound1++;
+            //    }
+            //    sum1 += numOfComparison1;
+            //}
+            //time.Stop();
+            //textBox10.Text = Convert.ToString(time.ElapsedMilliseconds);
+            //textBox9.Text = Convert.ToString(sum1 / keys.Length);
+            //textBox8.Text = Convert.ToString(numOfFound1);
+
+
         }
     }
 }
